@@ -1,0 +1,115 @@
+<app-header></app-header>
+<div class="page-wrap">
+    <app-sidebar></app-sidebar>
+    <div class="main-content">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Formulario de Proyectos</h5>
+            </div>
+            <div class="card-body">
+                <ul class="alert alert-danger" *ngIf="errores?.length > 0">
+                    <li *ngFor="let err of errores">
+                      {{ err }}
+                    </li>
+                  </ul>
+                <form #proyectoForm="ngForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Código Proyecto:</label>
+                                <input type="text" class="form-control" id="codigoProyecto" name="codigoProyecto"
+                                    placeholder="Ingrese un Codigo de Proyecto" [(ngModel)]="proyecto.codigoProyecto">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Nombre Proyecto:</label>
+                                <input type="text" class="form-control" id="projNombre" name="projNombre"
+                                    placeholder="Ingrese el Nombre del Proyecto" [(ngModel)]="proyecto.projNombre">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md 12">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Descripción: </label>
+                                <textarea class="form-control" id="projDescripcion" name="projDescripcion"
+                                    placeholder="Ingrese una Descripción" [(ngModel)]="proyecto.projDescripcion"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md 6">
+                            <div class="form-group">
+                                <label for="exampleInputConfirmPassword1">Total Horas:</label>
+                                <input type="number" class="form-control" id="totalHoras" name="totalHoras"
+                                    placeholder="Total de Horas" [(ngModel)]="proyecto.totalHoras">
+                            </div>
+                        </div>
+                        <div class="col-md 6">
+                            <div class="form-group">
+                                <label for="exampleInputConfirmPassword1">Costo Total:</label>
+                                <input type="number" class="form-control" id="costoTotal" name="costoTotal"
+                                    placeholder="Ingrese un Usuario" [(ngModel)]="proyecto.costoTotal">
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="!proyecto.id" class="row">
+                        <div class="col-md-2">
+                            <p><strong>Integrantes:</strong></p>
+                            <Button type="button" (click)="selecionar()" class="btn btn-sm btn-warning" style="color: white;"><i class="ik ik-user-plus"></i>Agregar</Button>
+                        </div>
+                        
+                    </div>
+                    
+                    <hr>
+                    <table *ngIf="!proyecto.id" class="table table-striped table-hover table-sm">
+                        <thead>
+                          <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Email</th>
+                            <th>Genero</th>
+                            <th>Eliminar</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of proyecto.integrante; let in=index">
+                                <td><input type="text" name="nombre" [(ngModel)]="item.nombre" class="form-control col-sm-12"></td>
+                                <td><input type="text" name="apellido" [(ngModel)]="item.apellido" class="form-control col-sm-12"></td>
+                                <td><input type="email" name="email" [(ngModel)]="item.email" class="form-control col-sm-12"></td>
+                                <td>
+                                   <!-- <input type="text" name="item.genero" [(ngModel)]="item.genero" class="form-control col-sm-12">-->
+                                <select class="form-control" [(ngModel)]="item.genero" name="item.genero">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                </select>
+                                </td>
+                                <td><button class="btn btn-danger btn-sm" type="button"
+                                    (click)="eliminarItem(item.nombre)">x</button></td>
+                              </tr>
+                        </tbody>
+                    </table>
+                    <hr>
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <!--<button class="btn btn-sm btn-success" style="margin-right: 5px;" role="button"
+                                (click)='create(proyectoForm)' *ngIf="!proyecto.id else elseBlock"><i
+                                    class="ik ik-check"></i>Crear</button>-->
+
+                                    <input type="submit" *ngIf="!proyecto.id else elseBlock" style="margin-right: 5px;" (click)="create(proyectoForm)" value="Crear Proyecto" class="btn btn-secondary">
+                
+                                    <ng-template #elseBlock>
+                                <button class="btn btn-sm btn-primary" style="margin-right: 5px;" role="button"
+                                    (click)='update()'> <i class="ik ik-edit-1"></i> Actualizar</button>
+                            </ng-template>
+                            <a type="button" class="btn btn-sm btn-danger" style="color: white;"
+                                routerLink="/proyectos"><i class="ik ik-log-out"></i>Salir</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

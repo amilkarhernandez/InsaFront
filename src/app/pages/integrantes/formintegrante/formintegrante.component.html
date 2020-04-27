@@ -1,0 +1,70 @@
+<app-header></app-header>
+<div class="page-wrap">
+    <app-sidebar></app-sidebar>
+    <div class="main-content">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Formulario de Integrantes</h5>
+            </div>
+            <div class="card-body">
+                <ul class="alert alert-danger" *ngIf="errores?.length > 0">
+                    <li *ngFor="let err of errores">
+                      {{ err }}
+                    </li>
+                  </ul>
+                <form>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Nombre:</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre"
+                            placeholder="Ingrese un Nombre" [(ngModel)]="integrante.nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Apellido:</label>
+                        <input type="text" class="form-control" id="apellido" name="apellido"
+                            placeholder="Ingrese un Apellido" [(ngModel)]="integrante.apellido">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Email: </label>
+                        <input type="email" class="form-control" id="email" name="email"
+                            placeholder="Ingrese un Email" [(ngModel)]="integrante.email">
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-form-label col-sm-2"> Genero</label>
+                        <div class="col-sm-6">
+                            <select class="form-control" name="genero"
+                                [(ngModel)]="integrante.genero">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-form-label col-sm-2"> Proyecto</label>
+                        <div class="col-sm-6">
+                            <select [compareWith]="compararProyectos" class="form-control" name="proyecto"
+                                [(ngModel)]="integrante.proyecto">
+                                <option *ngFor="let pro of proyecto" [ngValue]="pro">{{pro.codigoProyecto}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <button class="btn btn-sm btn-success" style="margin-right: 5px;" role="button"
+                                (click)='create()' *ngIf="!integrante.id else elseBlock"><i
+                                    class="ik ik-check"></i>Crear</button>
+                            <ng-template #elseBlock>
+                                <button class="btn btn-sm btn-primary" style="margin-right: 5px;" role="button"
+                                    (click)='update()'> <i class="ik ik-edit-1"></i> Actualizar</button>
+                            </ng-template>
+                            <a type="button" class="btn btn-sm btn-danger" style="color: white;"
+                                routerLink="/integrantes"><i class="ik ik-log-out"></i>Salir</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

@@ -1,0 +1,53 @@
+<app-header></app-header>
+<div class="page-wrap">
+    <app-sidebar></app-sidebar>
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="d-block w-100">Detalle del Proyecto <strong>{{proyecto.codigoProyecto}}</strong><small class="float-right"></small></h3>
+                </div>
+                <div class="card-body">
+                    <div class="row invoice-info">
+                        <div class="col-sm-6 invoice-col">
+                            <strong>Nombre Proyecto:</strong>
+                            <p>{{proyecto.projNombre}}</p>
+                            <strong>Descripción del Proyecto:</strong>
+                            <p>{{proyecto.projDescripcion}}</p>
+                        </div>
+                        <div class="col-sm-6 invoice-col">
+                            <strong>Total Horas:</strong>
+                            <p>{{proyecto.totalHoras}}</p>
+                            <b>Costo Total:</b> <p>${{proyecto.costoTotal}}</p><br>
+                        </div>
+                    </div>
+                    <strong>Integrantes: </strong>
+                    <div class="row">
+                        <div class="col-12 table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Nombres</th>
+                                        <th>Apellidos</th>
+                                        <th>email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let inte of proyecto.integrante">
+                                        <td>{{inte.id}}</td>
+                                        <td>{{inte.nombre}}</td>
+                                        <td>{{inte.apellido}}</td>
+                                        <td>{{inte.email}}</td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

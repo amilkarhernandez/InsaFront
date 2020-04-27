@@ -1,0 +1,31 @@
+
+<app-header></app-header>
+<div class="page-wrap">
+    <app-sidebar></app-sidebar>
+    <div class="main-content">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Formulario para Subir Proyectos</h5>
+            </div>
+            <div class="card-body">
+
+                <form>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Archivo Excel o Csv:</label>
+                        <input (change)="seleccionarArchivo($event)" type="file" class="form-control" id="archivo" name="archivo">
+                    </div>
+                    <hr>
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <button (click)="subirArchivo()" class="btn btn-sm btn-success" style="margin-right: 5px;" role="button"><i class="ik ik-check"></i>Subir</button>
+                            
+                            <a type="button" class="btn btn-sm btn-danger" style="color: white;"
+                                routerLink="/proyectos"><i class="ik ik-log-out"></i>Salir</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

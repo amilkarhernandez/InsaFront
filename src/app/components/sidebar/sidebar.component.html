@@ -1,0 +1,31 @@
+<div class="app-sidebar colored">
+    <div class="sidebar-header">
+        <a class="header-brand" href="index.html">
+            <div class="logo-img">
+              
+            </div>
+            <span class="text">INSA PROJ</span>
+        </a>
+        
+    </div>
+    
+    <div class="sidebar-content">
+        <div class="nav-container">
+            <nav id="main-menu-navigation" class="navigation-main">
+                <div class="nav-lavel">Menu</div>
+                <div class="nav-item" routerLinkActive="active">
+                    <a routerLink="/dasboard"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
+                </div>
+                <div *ngIf="authService.hasrole('ROLE_ADMIN')" class="nav-item" routerLinkActive="active">
+                    <a routerLink="/usuarios"><i class="ik ik-user-plus"></i><span>Usuarios</span></a>
+                </div>
+                <div class="nav-item" routerLinkActive="active">
+                    <a routerLink="/proyectos"><i class="ik ik-layers"></i><span>Proyectos</span></a>
+                </div>
+                <div class="nav-item" routerLinkActive="active">
+                    <a routerLink="/integrantes"><i class="ik ik-users"></i><span>Integrantes</span></a>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
